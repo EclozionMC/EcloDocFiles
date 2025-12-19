@@ -308,4 +308,33 @@ public void onStaffChat(CommandContext ctx) {
 
 ---
 
+## 10. Security & Signing
+
+EcloCore enforces a strict **Digital Signature Verification** for all plugin updates. This prevents supply chain attacks where a compromised GitHub account could distribute malicious updates.
+
+### 1. Requirements
+- You must sign every release `.jar` file.
+- You need the **Private Key** (`private_key.pem`) generated for the Eclozion network.
+- The **Public Key** is hardcoded in EcloCore to verify your signatures.
+
+### 2. Signing Process
+Before releasing a new version on GitHub:
+
+1.  **Build** your plugin (e.g., `EcloEco-1.0.jar`).
+2.  **Sign** the jar using OpenSSL:
+    ```bash
+    openssl dgst -sha256 -sign private_key.pem -out EcloEco-1.0.jar.sig EcloEco-1.0.jar
+    ```
+3.  **Upload** BOTH files to the GitHub Release:
+    - `EcloEco-1.0.jar`
+    - `EcloEco-1.0.jar.sig`
+
+### 3. Verification Failure
+If EcloCore detects an invalid signature:
+1.  It **DELETES** the downloaded file immediately.
+2.  It sends a **Critical Security Alert** to the admin Discord webhook, including the IP and the commit author.
+3.  The update is aborted.
+
+---
+
 > **Note**: EcloCore is an internal API. Breaking changes may occur between major versions (1.x -> 2.x). Always check the CHANGELOG before updating.
