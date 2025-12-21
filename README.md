@@ -39,4 +39,3 @@ Welcome to the central documentation hub for EclozionMC's plugin ecosystem.
 | **[EcloVoteParty](/Plugins/EcloVoteParty_dependency_guide.md)** | Vote Events & Rewards. | [![Repo](https://img.shields.io/badge/GitHub-EcloVoteParty-black?style=flat-square&logo=github)](https://github.com/EclozionMC/EcloVoteParty) |
 
 ---
-*Generated automatically by Antigravity Agent for EclozionMC.*
